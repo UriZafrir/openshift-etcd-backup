@@ -7,9 +7,9 @@ oc new-project etcd-bkp
 ```
 oc apply -f backup-rbac.yaml
 oc apply -f backup-storage.yaml
+oc apply -f backup-cronjob.yaml
 
 ```
-
 
 To test the backup, or create an manual backup, you can run a job:
 ```

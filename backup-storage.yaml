@@ -11,7 +11,7 @@ spec:
     storage: 10Gi
   claimRef:
     name: etcd-backup-pvc
-    namespace: etcd-backup
+    namespace: etcd-bkp
   nfs:
     server: 172.20.80.86
     path: /mnt/NFS/etcd-backup-elbisim

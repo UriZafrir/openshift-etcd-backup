@@ -6,4 +6,19 @@ oc new-project etcd-bkp
 
 ```
 oc apply -f backup-rbac.yaml
+oc apply -f backup-storage.yaml
+
 ```
+
+
+To test the backup, or create an manual backup, you can run a job:
+```
+backupName=$(date "+etcd-backup-manual-%F-%H-%M-%S")
+oc create job --from=cronjob/cronjob-etcd-backup ${backupName}
+```
+
+To see if everything works as it should, you can check the logs:
+```
+oc logs -l job-name=${backupName}
+```
+Then check on your Storage, if the files are there as excepted.

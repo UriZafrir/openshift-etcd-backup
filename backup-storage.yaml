@@ -6,14 +6,15 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   accessModes:
     - ReadWriteMany
-  nfs:
-    server: example.com
-    path: "/etcd-backup"
+  storageClassName: nfs-client
   capacity:
     storage: 10Gi
   claimRef:
     name: etcd-backup-pvc
     namespace: etcd-backup
+  nfs:
+    server: 172.20.80.86
+    path: /mnt/NFS/etcd-backup-elbisim
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -21,6 +22,7 @@ metadata:
   name: etcd-backup-pvc
 spec:
   volumeName: etcd-backup-pv
+  storageClassName: nfs-client
   accessModes:
     - ReadWriteMany
   resources:
